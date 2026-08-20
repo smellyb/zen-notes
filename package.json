@@ -1,14 +1,42 @@
 {
-  "name": "react-example",
+  "name": "desktop-sticky-notes",
+  "version": "1.0.0",
+  "description": "轻量桌面长条便签与待办工具",
+  "main": "electron/main.cjs",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "electron:dev": "NODE_ENV=development npx electron .",
+    "build:exe": "vite build && npx electron-builder --win portable nsis"
+  },
+  "build": {
+    "appId": "com.desktop.stickynotes",
+    "productName": "桌面便签",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "桌面便签"
+    }
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
