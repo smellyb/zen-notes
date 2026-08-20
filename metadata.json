@@ -1,0 +1,6 @@
+{
+  "name": "桌面便签",
+  "description": "轻量优雅的桌面便签与长条待办工具，支持自由拖拽缩放、条状/卡片双形态、一键防误触锁定与多色彩主题。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
