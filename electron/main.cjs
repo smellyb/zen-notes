@@ -1,17 +1,21 @@
 const { app, BrowserWindow, Menu, Tray } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 let mainWindow = null;
 
 function createWindow() {
+  const iconPath = path.join(__dirname, '../public/favicon.ico');
+  const hasIcon = fs.existsSync(iconPath);
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
     minWidth: 800,
     minHeight: 600,
     title: '桌面便签',
-    icon: path.join(__dirname, '../public/favicon.ico'),
-    frame: true, // 保持标准窗口
+    ...(hasIcon ? { icon: iconPath } : {}),
+    frame: true,
     transparent: false,
     webPreferences: {
       nodeIntegration: false,
@@ -24,10 +28,11 @@ function createWindow() {
   Menu.setApplicationMenu(null);
 
   // 加载页面
-  if (process.env.NODE_ENV === 'development' || !app.isPackaged) {
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:3000');
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    const indexPath = path.join(__dirname, '../dist/index.html');
+    mainWindow.loadFile(indexPath);
   }
 
   mainWindow.on('closed', () => {
