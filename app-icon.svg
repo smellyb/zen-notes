@@ -1,0 +1,51 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="120" y1="80" x2="904" y2="944" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="noteGrad" x1="200" y1="200" x2="824" y2="824" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="100%" stop-color="#FDE047" />
+    </linearGradient>
+    <linearGradient id="pinGrad" x1="450" y1="120" x2="574" y2="244" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#DC2626" />
+    </linearGradient>
+    <filter id="shadow" x="120" y="160" width="784" height="784" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- App Background Squircle -->
+  <rect x="64" y="64" width="896" height="896" rx="224" fill="url(#bgGrad)" />
+
+  <!-- Note Card -->
+  <g filter="url(#shadow)">
+    <rect x="212" y="232" width="600" height="600" rx="48" fill="url(#noteGrad)" />
+    <!-- Note fold/strip header -->
+    <path d="M212 280 C212 253.49 233.49 232 260 232 H764 C790.51 232 812 253.49 812 280 V320 H212 V280 Z" fill="#FACC15" />
+    
+    <!-- Note lines -->
+    <!-- Line 1: Title placeholder / bullet -->
+    <circle cx="300" cy="400" r="16" fill="#D97706" />
+    <rect x="348" y="386" width="376" height="28" rx="14" fill="#B45309" fill-opacity="0.85" />
+    
+    <!-- Line 2: Todo Item with check -->
+    <rect x="284" y="474" width="32" height="32" rx="8" fill="#10B981" />
+    <path d="M292 490 L298 496 L308 484" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="348" y="476" width="310" height="28" rx="14" fill="#78350F" fill-opacity="0.75" />
+
+    <!-- Line 3: Regular text line -->
+    <circle cx="300" cy="580" r="16" fill="#F59E0B" />
+    <rect x="348" y="566" width="240" height="28" rx="14" fill="#78350F" fill-opacity="0.7" />
+
+    <!-- Line 4: Regular text line -->
+    <circle cx="300" cy="670" r="16" fill="#F59E0B" />
+    <rect x="348" y="656" width="340" height="28" rx="14" fill="#78350F" fill-opacity="0.6" />
+  </g>
+
+  <!-- Pushpin / Header Badge -->
+  <circle cx="512" cy="180" r="48" fill="url(#pinGrad)" />
+  <circle cx="496" cy="164" r="14" fill="#FCA5A5" />
+</svg>
