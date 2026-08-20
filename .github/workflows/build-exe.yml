@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build Windows EXE (Tauri Lightweight)
 
 on:
   push:
@@ -18,17 +18,26 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Dependencies
+      - name: Install Rust Stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Frontend Dependencies
         run: npm install
 
-      - name: Build Web & Windows EXE Package
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: npm run build:exe
+      - name: Build Web Assets
+        run: npm run build
 
-      - name: Upload EXE Artifacts
+      - name: Build Tauri Package
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows EXE Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: DesktopStickyNotes-Windows-EXE
-          path: release/*.exe
+          name: DesktopStickyNotes-Tauri-Lightweight-EXE
+          path: |
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/*.exe
+          if-no-files-found: warn

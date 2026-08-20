@@ -12,7 +12,9 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "electron:dev": "NODE_ENV=development npx electron .",
-    "build:exe": "vite build && electron-builder --win --x64"
+    "build:exe": "vite build && electron-builder --win --x64",
+    "tauri": "tauri",
+    "build:tauri": "vite build && tauri build"
   },
   "build": {
     "appId": "com.desktop.stickynotes",
