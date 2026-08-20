@@ -12,11 +12,12 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "electron:dev": "NODE_ENV=development npx electron .",
-    "build:exe": "vite build && electron-builder --win portable nsis"
+    "build:exe": "vite build && electron-builder --win --x64"
   },
   "build": {
     "appId": "com.desktop.stickynotes",
     "productName": "桌面便签",
+    "asar": true,
     "directories": {
       "output": "release"
     },
@@ -26,8 +27,14 @@
     ],
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
       ]
     },
     "nsis": {
